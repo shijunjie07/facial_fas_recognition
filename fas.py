@@ -52,9 +52,8 @@ class AntiSpoof:
         # evaluation
         self.model.eval()
         
-        self.data_transforms = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
+        self.transform = transforms.Compose([
+            transforms.Resize((160, 160)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
@@ -65,7 +64,7 @@ class AntiSpoof:
         if width == 0 or height == 0:
             return False, False, 0.0
         
-        norm_features = self.data_transforms(image).unsqueeze(0)
+        norm_features = self.transform(image).unsqueeze(0)
         norm_features = norm_features.to(self.device)
         with torch.no_grad():
             output = self.model(norm_features)

@@ -6,6 +6,7 @@
 
 import torch
 from .config import Config
+from torchvision import transforms
 from facenet_pytorch import InceptionResnetV1
 
 class Recognizer:
@@ -17,7 +18,14 @@ class Recognizer:
             torch.load(Config.RECOGNIZER_WEIGHTS, map_location=torch.device('cpu'))['state_dict']
         )
         self.resnet.eval()
-            
+        
+        self.transform = transforms.Compose([
+            transforms.Resize((160, 160)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+        ])
+
     def encode(self, img):
-        res = self.resnet(torch.Tensor(img))
+        with torch.no_grad():
+            res = self.resnet(self.transform(img).unsqueeze(0))
         return res
