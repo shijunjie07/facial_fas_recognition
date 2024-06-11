@@ -36,10 +36,10 @@ class FaceRecg:
         
         if cropped_faces is not None and batch_boxes is not None:
             for box, face in zip(batch_boxes, cropped_faces):
-
+                face_pil = Image.fromarray(face.transpose(2, 0, 1))
                 # check liveness
                 valid_face, live, score = self.liveness_checker.predict(
-                    Image.fromarray(np.array(face))
+                    face_pil
                 )
                 if not valid_face:
                     continue
@@ -49,7 +49,7 @@ class FaceRecg:
                 bbox = [x, y, x2, y2]
                 
                 # recognition
-                face_id = self._get_id(face)
+                face_id = self._get_id(face_pil)
                 
                 # append
                 recg_faces["faces"].append(np.array(face))
@@ -61,10 +61,10 @@ class FaceRecg:
         return bool(recg_faces.get('faces')), recg_faces
 
                 
-    def _get_id(self, face) -> str:
+    def _get_id(self, face:Image.Image) -> str:
         # encode face
         face_embedding = self.recognizer.encode(
-            Image.fromarray(np.array(face))
+            face
         )
         
         # comapre
