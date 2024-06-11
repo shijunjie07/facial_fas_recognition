@@ -4,15 +4,20 @@
 # Sat 3 June 2024
 # --------------------------
 
+import torch
+from .config import Config
 from facenet_pytorch import MTCNN
 
 
 class FaceDetector:
     def __init__(self):
         self.mtcnn = MTCNN(
-            image_size=224, keep_all=True, thresholds=[0.4, 0.5, 0.5], min_face_size=60
+            image_size=224, keep_all=True, thresholds=[0.4, 0.5, 0.5], min_face_size=60,
         )
-        # self.detect_box = MethodType(self._detect_faces, self.mtcnn)
+        self.mtcnn.load_state_dict(
+            torch.load(Config.DETECTOR_WEIGHTS, map_location=torch.device('cpu'))
+        )
+        self.mtcnn.eval()
         
     def detect_faces(self, image):
         boxes, _ = self.mtcnn.detect(image)

@@ -7,6 +7,7 @@
 
 import torch
 from torch import nn
+from .config import Config
 from torchvision import transforms
 from torchvision.models import mobilenet_v2
 
@@ -41,10 +42,10 @@ class SpoofNet(nn.Module):
     
 class AntiSpoof:
     
-    def __init__(self, weights='/home/junja/attendance_project/face_recg_model/pretrained/spoof.pt'):
+    def __init__(self):
         self.model = SpoofNet()
         self.model.load_state_dict(
-            torch.load(weights, map_location=torch.device('cpu'))['state_dict'])
+            torch.load(Config.SPOOF_WEIGHTS, map_location=torch.device('cpu'))['state_dict'])
         self.device = 'cpu'
         self.model.to(self.device)
         
