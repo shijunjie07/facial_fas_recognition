@@ -20,9 +20,9 @@ pip install git+https://github.com/shijunjie07/facial_fas_recognition.git
   - spoof.pt
 ```
 #### 4. generate embedding for known faces
-```bash
-  face_recg = FaceRecg()
-  ....
+```python
+face_recg = FaceRecg()
+...
 
 ```
 ### 5. 
