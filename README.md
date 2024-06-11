@@ -9,12 +9,12 @@ The Facial Recognition with Anti-Spoofing is a system which capable of accuratel
 
 #### 1. install packages with pip
 ```bash
-  pip install git+https://github.com/shijunjie07/facial_fas_recognition.git
+pip install git+https://github.com/shijunjie07/facial_fas_recognition.git
 ```
 #### 2. Download the pretrained weights from this [link](https://drive.google.com/drive/folders/1dqH2P7YGROh9SbjQDMsMX0vs8O8JzDPE?usp=sharing)
 #### 3. put the pretrained weigths folder to your directory
 ```bash
-  /pretrained
+/pretrained
   - detector.pt
   - recognizer.pt
   - spoof.pt
