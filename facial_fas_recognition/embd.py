@@ -9,7 +9,6 @@ import cv2
 from PIL import Image
 from tqdm import tqdm
 
-from .config import Config
 from .detector import FaceDetector
 from .recognizer import Recognizer
 
@@ -30,7 +29,7 @@ def generate_embedding(image):
     else: return False, False
 
 # generate embeddings
-def generate_known_face_embeddings(known_face_dir=Config.KNOWN_FACE_DIR):
+def generate_known_face_embeddings(known_face_dir):
     
     embeddings = {}
 

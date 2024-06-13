@@ -27,6 +27,7 @@ https://drive.google.com/drive/folders/1dqH2P7YGROh9SbjQDMsMX0vs8O8JzDPE?usp=sha
 ```bash
 pretrained_weights_dir: /path/to/your/pretrained/dir
 ```
+
 ## How To Use
 
 ```python
@@ -49,11 +50,24 @@ is_not_empty, recg_data = face_recg.recg(image)
 }
 ```
 
+#### Generate Embeddings
+embedding is important for the recognizer
+```python
+from facial_fas_recognition.embd import generate_embedding, generate_known_face_embeddings
+
+# generate embedding for a singal image
+image = cv2.imread('/path/to/your/image/file')
+is_gen, embedding = generate_embedding(image)
+
+# generate embeddings for multiple images
+known_face_dir = '/path/to/your/face/image/dir'
+embeddings = generate_known_face_embeddings(known_face_dir)
+```
+
 #### how to change the 'pretrained_weights_dir' on your code
 ```python
 from facial_fas_recognition.config import Config
 
 config_instance = Config()
 config_instance.set_directory('/path/to/your/new/pretrained/dir')
-
 ```
