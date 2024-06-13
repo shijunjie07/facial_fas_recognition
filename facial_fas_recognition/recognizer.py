@@ -14,14 +14,15 @@ class Recognizer:
     def __init__(self):
         self.resnet = InceptionResnetV1(pretrained=None)
         self.resnet.load_state_dict(
-            torch.load(Config.RECOGNIZER_WEIGHTS, map_location=torch.device('cpu'))['state_dict']
+            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=torch.device('cpu'))['state_dict']
         )
         self.resnet.eval()
         
         self.transform = transforms.Compose([
             transforms.Resize((224, 224)),
             transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+            transforms.Normalize(mean=[0.5, 0.5, 0.5],
+                                 std=[0.5, 0.5, 0.5])
         ])
 
     def encode(self, img):

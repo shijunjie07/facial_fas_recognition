@@ -15,7 +15,7 @@ class FaceDetector:
             image_size=224, keep_all=True, thresholds=[0.4, 0.5, 0.5], min_face_size=60,
         )
         self.mtcnn.load_state_dict(
-            torch.load(Config.DETECTOR_WEIGHTS, map_location=torch.device('cpu'))
+            torch.load(Config().DETECTOR_WEIGHTS, map_location=torch.device('cpu'))
         )
         self.mtcnn.eval()
         

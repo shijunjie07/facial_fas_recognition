@@ -45,7 +45,7 @@ class AntiSpoof:
     def __init__(self):
         self.model = SpoofNet()
         self.model.load_state_dict(
-            torch.load(Config.SPOOF_WEIGHTS, map_location=torch.device('cpu'))['state_dict'])
+            torch.load(Config().SPOOF_WEIGHTS, map_location=torch.device('cpu'))['state_dict'])
         self.device = 'cpu'
         self.model.to(self.device)
         
@@ -55,7 +55,8 @@ class AntiSpoof:
         self.transform = transforms.Compose([
             transforms.Resize((224, 224)),
             transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+            transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225])
         ])
 
     def predict(self, image):

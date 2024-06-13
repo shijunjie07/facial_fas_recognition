@@ -2,3 +2,5 @@ __pycache__/
 
 faces/
 pretrained/
+
+test.py

@@ -15,7 +15,7 @@ from .recognizer import Recognizer
 
 class FaceRecg:
     
-    def __init__(self, embeddings:dict, recg_thresh=1.2):
+    def __init__(self, embeddings:dict, recg_thresh=0.75):
         self.embeddings = embeddings
         self.recg_thresh = recg_thresh
         self.face_detector = FaceDetector()
@@ -36,7 +36,7 @@ class FaceRecg:
         
         if cropped_faces is not None and batch_boxes is not None:
             for box, face in zip(batch_boxes, cropped_faces):
-                face_pil = Image.fromarray(face.transpose(2, 0, 1))
+                face_pil = Image.fromarray(face)
                 # check liveness
                 valid_face, live, score = self.liveness_checker.predict(face_pil)
                 
@@ -62,9 +62,7 @@ class FaceRecg:
                 
     def _get_id(self, face:Image.Image) -> str:
         # encode face
-        face_embedding = self.recognizer.encode(
-            face
-        )
+        face_embedding = self.recognizer.encode(face)
         
         # comapre
         detect_dict = {}
