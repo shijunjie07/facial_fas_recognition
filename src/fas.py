@@ -1,7 +1,7 @@
 # --------------------------
 # face anti-spoofing implentation
 # @author: Shi Junjie
-# # Sat 3 June 2024
+# Sat 3 June 2024
 # --------------------------
 
 

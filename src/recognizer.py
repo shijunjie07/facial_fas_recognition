@@ -1,7 +1,7 @@
 # --------------------------
 # face recognition implentation
 # @author: Shi Junjie
-# # Sat 3 June 2024
+# Sat 3 June 2024
 # --------------------------
 
 import torch

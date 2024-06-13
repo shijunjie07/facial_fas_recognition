@@ -1,16 +1,16 @@
 # --------------------------
 # main
 # @author: Shi Junjie
-# # Sun 9 June 2024
+# Sun 9 June 2024
 # --------------------------
 
 import numpy as np
 from PIL import Image
 
 # local
-from detector import FaceDetector
-from fas import AntiSpoof
-from recognizer import Recognizer
+from .detector import FaceDetector
+from .fas import AntiSpoof
+from .recognizer import Recognizer
 
 
 class FaceRecg:
