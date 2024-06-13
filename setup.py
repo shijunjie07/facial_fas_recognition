@@ -11,7 +11,7 @@ with open("requirements.txt") as file:
     requirements = file.read().splitlines()
 
 setup(
-    name = "Facial FAS Recognition",
+    name = "facial_fas_recognition",
     version = '1.0',
     description='The Facial Recognition with Anti-Spoofing is a system \
         which capable of accurately identifying individuals while simultaneously \
