@@ -17,22 +17,6 @@ from .recognizer import Recognizer
 face_detector = FaceDetector()
 encode = Recognizer().encode
 
-# generate embeddings
-def _gen_embeddings(saved_faces):
-    
-    embeddings = {}
-
-    files = os.listdir(saved_faces)
-    for file in tqdm(files, desc="Generating Embeddings for Known Faces"):
-        face_id, _ = file.split(".")
-
-        img = cv2.imread(os.path.join(saved_faces, file))
-        _, cropped = face_detector.detect_faces(img)
-        if cropped is not None:
-            cropped = Image.fromarray(cropped[0])
-            embeddings[face_id] = encode(cropped)[0, :]
-
-    return embeddings
 
 def generate_embedding(image):
     
@@ -44,3 +28,20 @@ def generate_embedding(image):
         return True, embedding
 
     else: return False, False
+
+# generate embeddings
+def generate_known_face_embeddings(known_face_dir=Config.KNOWN_FACE_DIR):
+    
+    embeddings = {}
+
+    files = os.listdir(known_face_dir)
+    for file in tqdm(files, desc="Generating Embeddings for Known Faces"):
+        face_id, _ = file.split(".")
+
+        img = cv2.imread(os.path.join(known_face_dir, file))
+        _, cropped = face_detector.detect_faces(img)
+        if cropped is not None:
+            cropped = Image.fromarray(cropped[0])
+            embeddings[face_id] = encode(cropped)[0, :]
+
+    return embeddings
