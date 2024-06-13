@@ -25,6 +25,5 @@ setup(
     url='https://github.com/shijunjie07/facial_fas_recognition.git',  # Project URL
     packages=find_packages(),
     install_requires=requirements,
-    package_dir={'facial_fas_recognition': 'src'},
     python_requires='>=3.12',
 )
