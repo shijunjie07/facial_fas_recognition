@@ -33,8 +33,14 @@ pretrained_weights_dir: /path/to/your/pretrained/dir
 ```python
 import cv2
 from facial_fas_recognition from FaceRecg
+from facial_fas_recognition.embd import generate_known_face_embeddings
 
-face_recg = FaceRecg()
+# generate embeddings for multiple images
+known_face_dir = '/path/to/your/face/image/dir'
+embeddings = generate_known_face_embeddings(known_face_dir)
+
+# create facial recognition instance
+face_recg = FaceRecg(embeddings)
 
 image = cv2.imread('/path/to/your/image/file')
 
