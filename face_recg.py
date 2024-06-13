@@ -38,9 +38,8 @@ class FaceRecg:
             for box, face in zip(batch_boxes, cropped_faces):
                 face_pil = Image.fromarray(face.transpose(2, 0, 1))
                 # check liveness
-                valid_face, live, score = self.liveness_checker.predict(
-                    face_pil
-                )
+                valid_face, live, score = self.liveness_checker.predict(face_pil)
+                
                 if not valid_face:
                     continue
                 
