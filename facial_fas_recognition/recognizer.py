@@ -12,9 +12,11 @@ from facenet_pytorch import InceptionResnetV1
 class Recognizer:
     
     def __init__(self):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        
         self.resnet = InceptionResnetV1(pretrained=None)
         self.resnet.load_state_dict(
-            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=torch.device('cpu'))['state_dict']
+            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=self.device)['state_dict']
         )
         self.resnet.eval()
         

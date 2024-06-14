@@ -11,11 +11,13 @@ from facenet_pytorch import MTCNN
 
 class FaceDetector:
     def __init__(self):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        
         self.mtcnn = MTCNN(
             image_size=224, keep_all=True, thresholds=[0.4, 0.5, 0.5], min_face_size=60,
         )
         self.mtcnn.load_state_dict(
-            torch.load(Config().DETECTOR_WEIGHTS, map_location=torch.device('cpu'))
+            torch.load(Config().DETECTOR_WEIGHTS, map_location=self.device)
         )
         self.mtcnn.eval()
         

@@ -43,10 +43,11 @@ class SpoofNet(nn.Module):
 class AntiSpoof:
     
     def __init__(self):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        
         self.model = SpoofNet()
         self.model.load_state_dict(
-            torch.load(Config().SPOOF_WEIGHTS, map_location=torch.device('cpu'))['state_dict'])
-        self.device = 'cpu'
+            torch.load(Config().SPOOF_WEIGHTS, map_location=self.device)['state_dict'])
         self.model.to(self.device)
         
         # evaluation
