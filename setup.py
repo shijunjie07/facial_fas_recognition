@@ -12,7 +12,7 @@ with open("requirements.txt") as file:
 
 setup(
     name = "facial_fas_recognition",
-    version = '0.7.1',
+    version = '1.0.0',
     description='The Facial Recognition with Anti-Spoofing is a system \
         which capable of accurately identifying individuals while simultaneously \
             detecting and preventing spoofing attempts. Spoofing attempts include \
