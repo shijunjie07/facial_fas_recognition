@@ -23,9 +23,9 @@ https://drive.google.com/drive/folders/1dqH2P7YGROh9SbjQDMsMX0vs8O8JzDPE?usp=sha
  - spoof.pt
 ```
 
-#### 4. Change the 'pretrained_weights_dir' on config.yaml to your actual directory
+#### 4. Change the 'self.pretriained_weights_dir' on config.py to your actual directory
 ```bash
-pretrained_weights_dir: /path/to/your/pretrained/dir
+self.pretriained_weights_dir = '/path/to/your/pretrained/dir'
 ```
 
 ## How To Use
