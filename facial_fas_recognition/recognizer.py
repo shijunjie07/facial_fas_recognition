@@ -16,7 +16,7 @@ class Recognizer:
         
         self.resnet = InceptionResnetV1(pretrained=None)
         self.resnet.load_state_dict(
-            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=self.device)['state_dict']
+            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=self.device)
         )
         self.resnet.eval()
         
