@@ -16,12 +16,13 @@ class Recognizer:
         
         self.resnet = InceptionResnetV1(pretrained=None)
         self.resnet.load_state_dict(
-            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=self.device)
+            torch.load(Config().RECOGNIZER_WEIGHTS, map_location=self.device),
+            strict=False
         )
         self.resnet.eval()
         
         self.transform = transforms.Compose([
-            transforms.Resize((224, 224)),
+            transforms.Resize((160, 160)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.5, 0.5, 0.5],
                                  std=[0.5, 0.5, 0.5])
