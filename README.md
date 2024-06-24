@@ -32,7 +32,7 @@ self.pretriained_weights_dir = '/path/to/your/pretrained/dir'
 
 ```python
 import cv2
-from facial_fas_recognition import FaceRecg
+from facial_fas_recognition.face_recg import FaceRecg
 from facial_fas_recognition.embd import generate_known_face_embeddings
 
 # generate embeddings for multiple images
